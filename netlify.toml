@@ -1,10 +1,10 @@
-# [build]
-#   command = "yarn build"
-#   functions = "functions"
-#   publish = "dist"
+[build]
+  command = "yarn build"
+  functions = "functions"
+  publish = "dist"
 
-# [dev]
-#   command = "yarn start"
-#   port = 3000
-#   functionsPort = 34567
-#   autoLaunch = true
+[dev]
+  command = "yarn start"
+  port = 3000
+  functionsPort = 34567
+  autoLaunch = true
