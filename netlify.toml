@@ -7,4 +7,4 @@
   command = "yarn start"
   port = 3000
   functionsPort = 34567
-  autoLaunch = true
+  autoLaunch = false

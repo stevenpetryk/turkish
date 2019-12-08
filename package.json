@@ -4,6 +4,7 @@
   "main": "src/index.ts",
   "license": "MIT",
   "scripts": {
+    "local": "netlify dev",
     "start": "parcel src/index.html",
     "build": "parcel build src/index.html",
     "test": "jest"
@@ -15,5 +16,9 @@
     "prettier": "^1.19.1",
     "ts-jest": "^24.2.0",
     "typescript": "^3.7.3"
+  },
+  "dependencies": {
+    "cheerio": "^1.0.0-rc.3",
+    "node-fetch": "^2.6.0"
   }
 }
