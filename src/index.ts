@@ -1,4 +1,3 @@
-import { makeAblative, makeAccusative, makeGenitive } from "./nounCases"
-import { pluralize } from "./pluralize"
+import { makePresentProgressive, SUBJECTS } from "./conjugate"
 
-console.log(makeGenitive(makeAccusative(pluralize("kedi"))))
+console.log(makePresentProgressive("anla", SUBJECTS.SECOND_PERSON_SINGULAR))

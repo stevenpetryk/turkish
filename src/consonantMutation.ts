@@ -1,5 +1,5 @@
 export const MUTATIONS: Partial<Record<string, string>> = {
-  k: "ğ",
+  k: "ğ", // TODO: determine when this should just be g
   p: "b",
   ç: "c",
   t: "d",

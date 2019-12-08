@@ -19,7 +19,6 @@ test("makeDative()", () => {
   expect(makeDative("park")).toEqual("parkta")
   expect(makeDative("banka")).toEqual("bankada")
   expect(makeDative("restoran")).toEqual("restoranda")
-  expect(makeDative("restoran")).toEqual("restoranda")
 })
 
 test("makeAblative()", () => {
