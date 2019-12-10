@@ -68,7 +68,11 @@ function extractDefinitions(html) {
 function normalizeMeaning(meaning) {
   if (!meaning) return null
 
-  return meaning.replace(/\bsb\b/g, "somebody").replace(/\bsth\b/g, "something")
+  return meaning
+    .replace(/\bsb\b/g, "somebody")
+    .replace(/\bsth\b/g, "something")
+    .replace(/\bBrE\b/g, "British English")
+    .replace(/\bAmE\b/g, "American English")
 }
 
 /**
