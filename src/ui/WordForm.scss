@@ -1,0 +1,32 @@
+.word-form {
+  label {
+    font-weight: 600;
+  }
+
+  &--compound-input {
+    border-radius: 0.2rem;
+    background: #fff;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15), 0 5px 10px rgba(0, 0, 0, 0.1);
+    border: 2px solid transparent;
+    display: flex;
+
+    > * {
+      padding: 1rem;
+    }
+
+    input {
+      flex: 1 0 0;
+      width: 100%;
+    }
+
+    &:focus-within {
+      border-color: #333;
+    }
+  }
+
+  input {
+    appearance: none;
+    border: 0;
+    outline: 0;
+  }
+}

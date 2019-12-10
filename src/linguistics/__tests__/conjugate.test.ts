@@ -1,4 +1,4 @@
-import { makeInfinitive, makePresentProgressive, SUBJECTS } from "./conjugate"
+import { makeInfinitive, makePresentProgressive, SUBJECTS } from "../conjugate"
 
 test("makeInfinitive()", () => {
   expect(makeInfinitive("yap")).toEqual("yapmak")

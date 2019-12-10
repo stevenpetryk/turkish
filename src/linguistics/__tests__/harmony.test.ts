@@ -1,4 +1,4 @@
-import { harmony2Way, harmony4Way } from "./harmony"
+import { harmony2Way, harmony4Way } from "../harmony"
 
 test("harmony2Way", () => {
   expect(harmony2Way("kitap")).toEqual("a")

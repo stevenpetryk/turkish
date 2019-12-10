@@ -3,6 +3,7 @@
     "noEmit": true,
     "lib": ["DOM", "ES2017"],
     "strict": true,
+    "jsx": "react",
     "esModuleInterop": true,
     "resolveJsonModule": true
   },

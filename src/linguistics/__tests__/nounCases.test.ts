@@ -1,4 +1,4 @@
-import { makeAccusative, makeDative, makeAblative, makeGenitive } from "./nounCases"
+import { makeAccusative, makeDative, makeAblative, makeGenitive } from "../nounCases"
 
 test("makeAccusative()", () => {
   expect(makeAccusative("kedi")).toEqual("kediyi")
