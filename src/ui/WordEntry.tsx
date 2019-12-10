@@ -1,7 +1,7 @@
 import React, { useRef } from "react"
 import NonAsciiEntry from "./NonAsciiEntry"
 
-import "./WordForm.scss"
+import "./WordEntry.scss"
 
 export default function WordForm({
   value,
@@ -18,9 +18,9 @@ export default function WordForm({
   }
 
   return (
-    <form className="word-form">
+    <div className="word-entry">
       <label htmlFor="word">Enter a Turkish word:</label>
-      <div className="word-form--compound-input" lang="tur">
+      <div className="word-entry--compound-input" lang="tur">
         <input
           value={value}
           onChange={(e) => onChange(e.target.value)}
@@ -32,6 +32,6 @@ export default function WordForm({
         />
         <NonAsciiEntry onInsert={onInsert} />
       </div>
-    </form>
+    </div>
   )
 }

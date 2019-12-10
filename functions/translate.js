@@ -20,15 +20,13 @@ exports.handler = function(event, context, callback) {
         response = {
           definitions,
         }
-
         responseCode = 200
       } catch (e) {
         response = {
-          error: "Unable to fetch translations",
-          error_code: "translation_fetch_failure",
+          definitions: [],
         }
 
-        responseCode = 400
+        responseCode = 200
       }
 
       callback(null, {
@@ -50,7 +48,7 @@ function extractDefinitions(html) {
     const $translation = $(translation)
 
     definitions.push({
-      definition: $translation.text(),
+      meaning: normalizeMeaning($translation.text()),
       part: normalizePartOfSpeech(
         $translation
           .closest("tr")
@@ -65,20 +63,29 @@ function extractDefinitions(html) {
 }
 
 /**
+ * @param {string} meaning
+ */
+function normalizeMeaning(meaning) {
+  if (!meaning) return null
+
+  return meaning.replace(/\bsb\b/g, "somebody").replace(/\bsth\b/g, "something")
+}
+
+/**
  * @param {string} partDescription
  */
 function normalizePartOfSpeech(partDescription) {
   if (!partDescription) return null
 
   if (partDescription.match(/\bn\b/)) {
-    return "noun"
+    return "n"
   } else if (partDescription.match(/\badj\b/)) {
-    return "adjective"
+    return "adj"
   } else if (partDescription.match(/\badv\b/)) {
-    return "adverb"
+    return "adv"
   } else if (partDescription.match(/\bv\b/)) {
-    return "verb"
+    return "v"
   }
 
-  return partDescription
+  return "?"
 }

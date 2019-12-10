@@ -1,0 +1,40 @@
+.definitions {
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15), 0 5px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  padding: 1rem;
+  transition: opacity 0.2s ease;
+  border-left: 5px solid tomato;
+  background: white;
+
+  h2 {
+    font-size: 0.8em;
+    text-transform: uppercase;
+    font-weight: bold;
+    color: tomato;
+  }
+
+  &.loading {
+    opacity: 0.2;
+  }
+
+  ul {
+    list-style: none;
+
+    > * {
+      margin-block-start: 0.5rem;
+    }
+  }
+
+  li {
+    display: flex;
+    align-items: baseline;
+
+    .part {
+      font-size: 0.8em;
+      min-width: 3ch;
+      opacity: 0.5;
+      display: inline-block;
+      font-style: italic;
+    }
+  }
+}

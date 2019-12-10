@@ -1,0 +1,5 @@
+.app-form {
+  > * + * {
+    margin-block-start: 1rem;
+  }
+}

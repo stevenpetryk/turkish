@@ -1,4 +1,8 @@
-.word-form {
+.word-entry {
+  > * + * {
+    margin-block-start: 0.5rem;
+  }
+
   label {
     font-weight: 600;
   }
