@@ -53,7 +53,9 @@ export default function Definition({ word }: { word: string }) {
 
       <p className="resolved-word">{resolvedWord}</p>
 
-      {resolvedWord && definitions.length == 0 && <p className="none">None found</p>}
+      {resolvedWord && definitions.length == 0 && (
+        <p className="none">Could not find a definition</p>
+      )}
 
       <ul>
         {definitions.map((definition, index) => (
