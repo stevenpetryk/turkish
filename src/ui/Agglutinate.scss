@@ -1,0 +1,31 @@
+.agglutinate {
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15), 0 5px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  padding: 1rem;
+  transition: opacity 0.2s ease;
+  border-left: 5px solid #d12f28;
+  background: white;
+
+  > * + * {
+    margin-block-start: 1rem;
+  }
+
+  label {
+    margin: 0.5rem 0;
+  }
+
+  h2 {
+    font-size: 0.8em;
+    text-transform: uppercase;
+    font-weight: bold;
+    color: #d12f28;
+  }
+
+  code {
+    font-family: "Source Code Pro";
+    font-size: 0.7em;
+    padding: 0.2em;
+    background: rgba(50, 50, 50, 0.05);
+    border-radius: 2px;
+  }
+}

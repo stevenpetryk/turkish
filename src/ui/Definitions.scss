@@ -2,19 +2,31 @@
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15), 0 5px 10px rgba(0, 0, 0, 0.1);
   border-radius: 5px;
   padding: 1rem;
-  transition: opacity 0.2s ease;
-  border-left: 5px solid tomato;
+  transition: filter, opacity 0.2s ease;
+  border-left: 5px solid #d12f28;
   background: white;
 
   h2 {
     font-size: 0.8em;
     text-transform: uppercase;
     font-weight: bold;
-    color: tomato;
+    color: #d12f28;
+  }
+
+  .resolved-word {
+    margin: 0.4em 0;
+    font-weight: 600;
+  }
+
+  .none {
+    font-size: 0.8rem;
+    font-style: italic;
+    opacity: 0.5;
   }
 
   &.loading {
-    opacity: 0.2;
+    opacity: 0.5;
+    filter: saturate(0);
   }
 
   ul {

@@ -16,10 +16,7 @@ exports.handler = function(event, context, callback) {
       let responseCode
 
       try {
-        const definitions = extractDefinitions(html)
-        response = {
-          definitions,
-        }
+        response = extractDefinitions(html)
         responseCode = 200
       } catch (e) {
         response = {
@@ -44,6 +41,10 @@ function extractDefinitions(html) {
 
   const definitions = []
 
+  const resolvedWord = $(".lex_ful_entr")
+    .text()
+    .trim()
+
   $(".lex_ful_tran").each((_i, translation) => {
     const $translation = $(translation)
 
@@ -59,7 +60,7 @@ function extractDefinitions(html) {
     })
   })
 
-  return definitions
+  return { resolvedWord, definitions }
 }
 
 /**

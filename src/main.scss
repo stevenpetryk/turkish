@@ -16,6 +16,19 @@ body {
   background: #fafafa;
 }
 
+fieldset {
+  border: 0;
+  appearance: none;
+}
+
+legend {
+  font-weight: 600;
+}
+
+label {
+  display: block;
+}
+
 .vh {
   position: absolute !important;
   height: 1px;

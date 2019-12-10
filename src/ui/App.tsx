@@ -3,6 +3,7 @@ import WordEntry from "./WordEntry"
 import Definitions from "./Definitions"
 
 import "./App.scss"
+import Agglutinate from "./Agglutinate"
 
 export default function App() {
   const [word, setWord] = useState("")
@@ -13,6 +14,7 @@ export default function App() {
     <form className="app-form">
       <WordEntry value={word} onChange={setWord} />
       <Definitions word={debouncedWord} />
+      <Agglutinate word={debouncedWord} />
     </form>
   )
 }
