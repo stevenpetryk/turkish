@@ -60,7 +60,7 @@ function extractDefinitions(html) {
     })
   })
 
-  return { resolvedWord, definitions }
+  return { word: resolvedWord, definitions }
 }
 
 /**

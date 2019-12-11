@@ -13,7 +13,7 @@ export default function App() {
   return (
     <form className="app-form">
       <WordEntry value={word} onChange={setWord} />
-      <Definitions word={debouncedWord} />
+      <Definitions word={word} />
       <Agglutinate word={debouncedWord} />
     </form>
   )

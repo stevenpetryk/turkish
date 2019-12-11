@@ -4,7 +4,7 @@ import "./AgglutinateNoun.scss"
 
 export default function AgglutinateNoun() {
   return (
-    <form className="agglutinate-noun">
+    <div className="agglutinate-noun">
       <fieldset>
         <legend>Pluralization</legend>
 
@@ -35,6 +35,6 @@ export default function AgglutinateNoun() {
           <input type="checkbox" name="" id="" /> Ablative <code>-DAn</code>
         </label>
       </fieldset>
-    </form>
+    </div>
   )
 }

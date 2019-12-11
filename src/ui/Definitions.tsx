@@ -1,24 +1,68 @@
-import React, { useEffect, useState } from "react"
+import React, { useEffect, useState, useReducer, useRef } from "react"
 import classnames from "classnames"
 
 import "./Definitions.scss"
 
+interface IDefinition {
+  part: string
+  meaning: string
+}
+
+interface IState {
+  loading: boolean
+  foundWord: string
+  definitions: IDefinition[]
+}
+
+type Action<T extends string, S extends object = {}> = { type: T } & S
+
+type TheseActions =
+  | Action<"reset">
+  | Action<"definitionsLoaded", { word: string; definitions: IDefinition[] }>
+  | Action<"searchedWordChanged", { newSearchedWord: string }>
+
+const initialState: IState = {
+  loading: false,
+  foundWord: "",
+  definitions: [],
+}
+
+function reducer(state: IState, action: TheseActions): IState {
+  switch (action.type) {
+    case "reset":
+      return initialState
+    case "definitionsLoaded":
+      return {
+        ...state,
+        definitions: action.definitions,
+        foundWord: action.word,
+        loading: false,
+      }
+    case "searchedWordChanged":
+      return {
+        ...state,
+        loading: true,
+      }
+  }
+
+  return state
+}
+
 export default function Definition({ word }: { word: string }) {
-  const [resolvedWord, setResolvedWord] = useState<string>("")
-  const [definitions, setDefinitions] = useState<any[]>([])
-  const [loading, setLoading] = useState(false)
+  const [{ loading, foundWord, definitions }, dispatch] = useReducer(reducer, initialState)
+  const liveWord = useRef<string>("")
+  const debouncedWord = useDebounce(word, 200)
+
+  useEffect(() => {
+    liveWord.current = word
+    dispatch({ type: "searchedWordChanged", newSearchedWord: word })
+  }, [word])
 
   useEffect(() => {
     if (!word.trim()) {
-      setDefinitions([])
-      setResolvedWord("")
-      setLoading(false)
+      dispatch({ type: "reset" })
       return
     }
-
-    let cancelled = false
-
-    setLoading(true)
 
     async function fetchAndSet() {
       try {
@@ -27,35 +71,36 @@ export default function Definition({ word }: { word: string }) {
         )
         const json = await response.json()
 
-        if (!cancelled) {
-          setResolvedWord(json.resolvedWord)
-          setDefinitions(json.definitions)
-          setLoading(false)
+        if (liveWord.current === debouncedWord) {
+          dispatch({
+            type: "definitionsLoaded",
+            word: json.word,
+            definitions: json.definitions,
+          })
         }
       } catch (e) {
-        setDefinitions([])
-        setResolvedWord("")
-        console.error(e)
-        alert(e)
+        if (liveWord.current === debouncedWord) {
+          dispatch({
+            type: "definitionsLoaded",
+            word: "",
+            definitions: [],
+          })
+          console.error(e)
+          alert(e)
+        }
       }
     }
 
     fetchAndSet()
-
-    return () => {
-      cancelled = true
-    }
-  }, [word])
+  }, [debouncedWord])
 
   return (
     <div className={classnames("definitions", { loading })}>
       <h2>Definition</h2>
 
-      <p className="resolved-word">{resolvedWord}</p>
+      <p className="resolved-word">{foundWord}</p>
 
-      {resolvedWord && definitions.length == 0 && (
-        <p className="none">Could not find a definition</p>
-      )}
+      {foundWord && definitions.length == 0 && <p className="none">Could not find a definition</p>}
 
       <ul>
         {definitions.map((definition, index) => (
@@ -67,4 +112,20 @@ export default function Definition({ word }: { word: string }) {
       </ul>
     </div>
   )
+}
+
+function useDebounce<T>(value: T, delay: number) {
+  const [debouncedValue, setDebouncedValue] = useState(value)
+
+  useEffect(() => {
+    const handler = setTimeout(() => {
+      setDebouncedValue(value)
+    }, delay)
+
+    return function() {
+      clearTimeout(handler)
+    }
+  }, [value, delay])
+
+  return debouncedValue
 }
